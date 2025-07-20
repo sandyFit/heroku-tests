@@ -54,7 +54,7 @@ describe("Basic Auth Test on HerokuApp", () => {
      *  - Waits until the message "It's gone!" is displayed
      *  - Verify the checkbox is gone
      */
-    it.only("Ticks checkbox input and waits until success message appears", async() => {
+    it("Ticks checkbox input and waits until success message appears", async () => {
         await browser.url("https://the-internet.herokuapp.com/dynamic_controls");
 
         const checkbox = $('#checkbox input[type="checkbox"]');
@@ -82,6 +82,44 @@ describe("Basic Auth Test on HerokuApp", () => {
 
     });
 
+    /**
+     * Preconditions:
+     *  - User is on the dropdown page (https://the-internet.herokuapp.com/dropdown).
+     *  - The dropdown element is visible on the page.
 
-})
+     *  Steps:
+     *  - Navigate to the dropdown page.
+     *  - Locate the dropdown element.
+     *  - Select "Option 2" from the dropdown.
+     *  - Retrieve the selected value.
+     *  - Expected Result:
+     *  - The value corresponding to "Option 2" is selected.
+     *  - The selected value should equal '2'.
+     * 
+     *  Expected Result:
+     *  - The value corresponding to "Option 2" is selected.
+     *  - The selected value should equal '2'.
+     */
+    it.only("Should select Option 2 from the dropdown", async () => {
+        // Navigate to the page
+        await browser.url('https://the-internet.herokuapp.com/dropdown');
+
+        // Locate the dropdown element
+        const dropdown = await $('#dropdown');
+
+        // Wait for it to be displayed
+        await expect(dropdown).toBeDisplayed();
+
+        // Select by visible text
+        await dropdown.selectByVisibleText('Option 2');
+
+        // Get selected value
+        const selectedValue = await dropdown.getValue();
+        console.log(`Selected Value: ${selectedValue}`);
+
+        // Assert the selected value is correct
+        expect(selectedValue).toBe('2');
+        
+    });
+});
 
