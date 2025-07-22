@@ -43,7 +43,7 @@ describe("Basic Auth Test on HerokuApp", () => {
         await expect(message).toBeDisplayed();
         const finalMessage = await message.getText();
         console.log(`Message:, ${finalMessage}`);
-        expect(finalMessage).toContain("It's enabled!");
+        expect(finalMessage).toHaveTextContaining("It's enabled!");
 
     });
 
@@ -78,7 +78,7 @@ describe("Basic Auth Test on HerokuApp", () => {
         await expect(message).toBeDisplayed();
         const finalMessage = await message.getText();
         console.log(`Message: ${finalMessage}`);
-        expect(finalMessage).toContain("It's gone!");
+        expect(finalMessage).toHaveTextContaining("It's gone!");
 
     });
 

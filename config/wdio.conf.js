@@ -1,3 +1,7 @@
+const path = require('path');
+const downloadDir = path.resolve(__dirname, '../downloads'); // ✅ define esto primero
+
+
 exports.config = {
     //
     // ====================
@@ -50,8 +54,16 @@ exports.config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            prefs: {
+                'download.default_directory': downloadDir,
+                'download.prompt_for_download': false,
+                'profile.default_content_settings.popups': 0,
+            },
+        },
     }],
+
 
     //
     // ===================
